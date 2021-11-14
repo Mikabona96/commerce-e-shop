@@ -1,0 +1,14 @@
+.header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.options {
+	display: flex;
+	& .option {
+		text-decoration: none;
+		color: black;
+		margin-left: 10px;
+		cursor: pointer;
+	}
+}

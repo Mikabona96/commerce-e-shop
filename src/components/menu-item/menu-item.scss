@@ -1,13 +1,14 @@
 .menu-item {
-  min-width: 30%;
+  width: 20rem;
   height: 15rem;
   flex: 1 1 auto;
   display: flex;
   align-items: center;
   justify-content: center;
   border: 1px solid black;
-  margin: 0 7.5px 15px;
+  margin: 0 15px 15px;
   overflow: hidden;
+  margin-left: 0;
 
   &:hover {
     cursor: pointer;
@@ -23,17 +24,22 @@
     width: 25rem;
   }
 
-  &:first-child {
-    margin-right: 7.5px;
+  &:nth-child(3) {
+    margin-right: 0;
+    // margin-left: 15px;
   }
+  // &:first-child {
+  //   // margin-right: 15px;
+  //   // margin-left: 15px;
+  // }
 
   &:last-child {
-    margin-left: 7.5px;
+    margin-right: 0;
   }
   
   .background-image {
     width: 100%;
-    height: 100%;
+    // height: 100%;
   }
 
   .content {
