@@ -5,5 +5,13 @@
 body {
   font-family: 'Open Sans Condensed', sans-serif;
 	padding: 1.5rem 3.8rem;
+}
 
+::-webkit-scrollbar {
+    width: 0.4rem;
+    background: rgba(155, 155, 155, 0.5) transparent;
+}
+::-webkit-scrollbar-thumb {
+    background: rgba(63, 63, 63, 0.4) ;
+    border-radius: 20px;
 }
