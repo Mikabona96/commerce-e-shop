@@ -5,7 +5,9 @@ import {
 	getDocs,
 	addDoc,
 	deleteDoc,
-	doc
+	doc, 
+	setDoc,
+	getDoc
 } from 'firebase/firestore'
 import { GoogleAuthProvider, getAuth, signInWithPopup, signOut  } from "@firebase/auth";
 
@@ -98,4 +100,29 @@ export const deleteFromDataBase = () => {
 	const docRef = doc(db, 'users', '3bbffEkD4aVuEFSyTSSn')
 	deleteDoc(docRef)
 	//.then(() => ...do smth)
+}
+
+export const createUserProfile = async (userAuth, additionalData) => {
+	if (!userAuth) return
+
+	const {displayName, email} = userAuth;
+	const createdAt = new Date()
+	
+	const docRef = doc(db, "users", `${userAuth.uid}`);
+	const docSnap = await getDoc(docRef);
+
+	if (docSnap.exists()) {
+ 		//  console.log("Document data:", docSnap.data());
+	} else {
+		// doc.data() will be undefined in this case
+		// console.log("No such document!");
+		setDoc(doc(db, "users", `${userAuth.uid}`),{
+            displayName,
+			email,
+			createdAt,
+			...additionalData
+        })
+
+	}
+		
 }

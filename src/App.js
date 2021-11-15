@@ -2,7 +2,9 @@ import React from 'react';
 import { Route, Routes } from 'react-router';
 import './App.css';
 import Header from './components/header/header';
-import { auth } from './firebase/firebase';
+import { auth, 
+	// getData, 
+	createUserProfile } from './firebase/firebase';
 import HomePage from './pages/homepage/hompage';
 import ShopPage from './pages/shoppage/shoppage';
 import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up';
@@ -20,10 +22,12 @@ class App extends React.Component {
 	unsubscribeFromAuth = null
 
 	componentDidMount() {
-		this.unsubscribeFromAuth = auth.onAuthStateChanged(user => {
+		// createUserProfile()
+		this.unsubscribeFromAuth = auth.onAuthStateChanged(async user => {
 			this.setState({currentUser: user})
-			console.log(user)
+			createUserProfile(user)
 		})
+		// getData()
 	}
 
 	componentWillUnmount() {
