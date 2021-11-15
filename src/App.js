@@ -4,7 +4,9 @@ import './App.css';
 import Header from './components/header/header';
 import { auth, 
 	// getData, 
-	createUserProfile } from './firebase/firebase';
+	createUserProfile,
+	//  getUserData 
+} from './firebase/firebase';
 import HomePage from './pages/homepage/hompage';
 import ShopPage from './pages/shoppage/shoppage';
 import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up';
@@ -24,8 +26,14 @@ class App extends React.Component {
 	componentDidMount() {
 		// createUserProfile()
 		this.unsubscribeFromAuth = auth.onAuthStateChanged(async user => {
-			this.setState({currentUser: user})
+			!user ? this.setState({currentUser: user}) : this.setState({currentUser: {
+				displayName: user.displayName,
+				email: user.email,
+				id: user.uid
+			}})
+			// console.log(user)
 			createUserProfile(user)
+			// console.log(user)
 		})
 		// getData()
 	}
@@ -35,6 +43,8 @@ class App extends React.Component {
 	}
 
 	render() {
+
+		// console.log(this.state.currentUser)
 
 	return (
 		<>

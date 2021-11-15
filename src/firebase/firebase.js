@@ -9,7 +9,9 @@ import {
 	setDoc,
 	getDoc
 } from 'firebase/firestore'
-import { GoogleAuthProvider, getAuth, signInWithPopup, signOut  } from "@firebase/auth";
+import { GoogleAuthProvider, getAuth, signInWithPopup, signOut, 
+	// createUserWithEmailAndPassword  
+} from "@firebase/auth";
 
 
 const apiKey = `${process.env.REACT_APP_API_KEY}`
@@ -32,7 +34,7 @@ const provider = new GoogleAuthProvider();
 provider.setCustomParameters({
   'prompt': 'select_account'
 });
-export const auth = getAuth()
+export const auth = getAuth(app)
 
 export const SignInWithGoogle = () => {
 	signInWithPopup(auth, provider)
@@ -126,3 +128,17 @@ export const createUserProfile = async (userAuth, additionalData) => {
 	}
 		
 }
+
+
+// export const CreateProfileWithEmailAndPassword = async (email, password) => {
+
+// 		try {
+// 			const user = await createUserWithEmailAndPassword(auth, email, password)
+// 			console.log(user, user.user.uid)
+// 		} catch (error) {
+// 			console.log(error.message)
+// 		}
+
+// // 	console.log(email, password)
+
+// }
