@@ -1,0 +1,101 @@
+import { initializeApp } from "@firebase/app";
+import {
+	getFirestore,
+	collection,
+	getDocs,
+	addDoc,
+	deleteDoc,
+	doc
+} from 'firebase/firestore'
+import { GoogleAuthProvider, getAuth, signInWithPopup, signOut  } from "@firebase/auth";
+
+
+const apiKey = `${process.env.REACT_APP_API_KEY}`
+const firebaseConfig = {
+  apiKey: apiKey,
+  authDomain: "mika-shop.firebaseapp.com",
+  projectId: "mika-shop",
+  storageBucket: "mika-shop.appspot.com",
+  messagingSenderId: "946868971069",
+  appId: "1:946868971069:web:b8db5d4d7fb56fbc8c6c54",
+  measurementId: "G-6H08XWFMVN"
+};
+
+// Init app
+// eslint-disable-next-line no-unused-vars
+const app = initializeApp(firebaseConfig)
+
+//Authentication with Google
+const provider = new GoogleAuthProvider();
+provider.setCustomParameters({
+  'prompt': 'select_account'
+});
+export const auth = getAuth()
+
+export const SignInWithGoogle = () => {
+	signInWithPopup(auth, provider)
+  .then((result) => {
+    // This gives you a Google Access Token. You can use it to access the Google API.
+    const credential = GoogleAuthProvider.credentialFromResult(result);
+    // eslint-disable-next-line no-unused-vars
+    const token = credential.accessToken;
+    // The signed-in user info.
+    // eslint-disable-next-line no-unused-vars
+    const user = result.user;
+    // ...
+  }).catch((error) => {
+    // Handle Errors here.
+    // eslint-disable-next-line no-unused-vars
+    const errorCode = error.code;
+    // eslint-disable-next-line no-unused-vars
+    const errorMessage = error.message;
+    // The email of the user's account used.
+    // eslint-disable-next-line no-unused-vars
+    const email = error.email;
+    // The AuthCredential type that was used.
+    // eslint-disable-next-line no-unused-vars
+    const credential = GoogleAuthProvider.credentialFromError(error);
+    // ...
+  });
+}
+
+export const SignOutFromGoogle = () => {
+	const auth = getAuth();
+	signOut(auth).then(() => {
+	// Sign-out successful.
+	}).catch((error) => {
+	// An error happened.
+	});
+}
+
+//Init Services
+const db = getFirestore()
+
+// Collection Ref
+const colRef = collection(db, 'users')
+
+// Get Collection data
+export const getData = () => {
+	getDocs(colRef)
+	.then(data => data.docs.forEach(user => {
+		console.log(user.data(), user.id)
+	}))
+}
+
+// Add to Database
+
+export const AddDataToDatabase = () => {
+	addDoc(colRef, {
+		name: 'Peter',
+		lastName: 'Parker'
+	})
+	//.then(() => ...do smth)
+}
+
+// Delete from DB
+
+export const deleteFromDataBase = () => {
+	const docRef = doc(db, 'users', '3bbffEkD4aVuEFSyTSSn')
+	deleteDoc(docRef)
+	//.then(() => ...do smth)
+}

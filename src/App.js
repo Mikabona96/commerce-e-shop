@@ -2,10 +2,11 @@ import React from 'react';
 import { Route, Routes } from 'react-router';
 import './App.css';
 import Header from './components/header/header';
-import { auth, db } from './firebase/firebase.utils';
+import { auth } from './firebase/firebase';
 import HomePage from './pages/homepage/hompage';
 import ShopPage from './pages/shoppage/shoppage';
 import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up';
+
 
 class App extends React.Component {
 
@@ -19,9 +20,9 @@ class App extends React.Component {
 	unsubscribeFromAuth = null
 
 	componentDidMount() {
-		this.unsubscribeFromAuth = auth.onAuthStateChanged(async user => {
-			console.log(user)
+		this.unsubscribeFromAuth = auth.onAuthStateChanged(user => {
 			this.setState({currentUser: user})
+			console.log(user)
 		})
 	}
 
@@ -30,8 +31,6 @@ class App extends React.Component {
 	}
 
 	render() {
-
-		console.log(db)
 
 	return (
 		<>
