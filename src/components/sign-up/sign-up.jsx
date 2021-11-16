@@ -29,18 +29,22 @@ export default class SignUp extends React.Component {
 		}
 
 		try {
-			const user = await createUserWithEmailAndPassword(auth, email, password)
-			createUserProfile(user.user, { displayName })
+			const userU = await createUserWithEmailAndPassword(auth, email, password)
+			auth.onAuthStateChanged(async user => {
+				if (user) {
+					createUserProfile(userU.user, { displayName })
+				}
+			})
 		} catch (error) {
 			console.log(error.message)
 		}
 
-		// this.setState({
-		// 	displayName: '',
-		// 	email: '',
-		// 	password: '',
-		// 	confirmPassword: ''
-		// })
+		this.setState({
+			displayName: '',
+			email: '',
+			password: '',
+			confirmPassword: ''
+		})
 
 	}
 

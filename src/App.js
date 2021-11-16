@@ -38,6 +38,7 @@ class App extends React.Component {
 						id: user.uid
 					}})
 				});
+				createUserProfile(user)
 			} else {
 				this.setState({currentUser: null}) 
 			}

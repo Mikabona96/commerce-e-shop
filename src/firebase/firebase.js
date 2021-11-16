@@ -17,12 +17,12 @@ import { GoogleAuthProvider, getAuth, signInWithPopup, signOut,
 const apiKey = `${process.env.REACT_APP_API_KEY}`
 const firebaseConfig = {
   apiKey: apiKey,
-  authDomain: "mika-shop.firebaseapp.com",
-  projectId: "mika-shop",
-  storageBucket: "mika-shop.appspot.com",
-  messagingSenderId: "946868971069",
-  appId: "1:946868971069:web:b8db5d4d7fb56fbc8c6c54",
-  measurementId: "G-6H08XWFMVN"
+  authDomain: "mika-shop-e457c.firebaseapp.com",
+  projectId: "mika-shop-e457c",
+  storageBucket: "mika-shop-e457c.appspot.com",
+  messagingSenderId: "949103509594",
+  appId: "1:949103509594:web:fddb86e25b8206ccdad863",
+  measurementId: "G-JK9032WYYN"
 };
 
 // Init app
@@ -127,7 +127,6 @@ export const createUserProfile = async (userAuth, additionalData) => {
         })
 
 	}
-		
 }
 
 
