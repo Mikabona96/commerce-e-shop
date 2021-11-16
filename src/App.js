@@ -9,7 +9,7 @@ import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up
 import { doc, onSnapshot } from "firebase/firestore";
 import userActionCreator from './actions/userActionCreator';
 import { useDispatch } from 'react-redux';
-
+import CheckOutPage from './pages/checkoutpage/checkout';
 
 
 const App = () => {
@@ -45,6 +45,7 @@ const App = () => {
 			<Route path="/" element={<HomePage />} />
 			<Route path="/shop" element={<ShopPage />} />
 			<Route path="/signin" element={<SignInAndSignUpPage />} />
+			<Route path="/checkout" element={<CheckOutPage />} />
 		</Routes>
 		</>
 	)
