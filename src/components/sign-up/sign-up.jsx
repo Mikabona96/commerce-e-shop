@@ -35,9 +35,6 @@ export default class SignUp extends React.Component {
 			console.log(error.message)
 		}
 
-
-		// await CreateProfileWithEmailAndPassword(email, password)
-
 		// this.setState({
 		// 	displayName: '',
 		// 	email: '',

@@ -46,6 +46,7 @@ export const SignInWithGoogle = () => {
     // The signed-in user info.
     // eslint-disable-next-line no-unused-vars
     const user = result.user;
+	console.log(user)
     // ...
   }).catch((error) => {
     // Handle Errors here.
@@ -73,7 +74,7 @@ export const SignOutFromGoogle = () => {
 }
 
 //Init Services
-const db = getFirestore()
+export const db = getFirestore()
 
 // Collection Ref
 const colRef = collection(db, 'users')

@@ -5,11 +5,13 @@ import Header from './components/header/header';
 import { auth, 
 	// getData, 
 	createUserProfile,
-	//  getUserData 
+	//  getUserData ,
+	db
 } from './firebase/firebase';
 import HomePage from './pages/homepage/hompage';
 import ShopPage from './pages/shoppage/shoppage';
 import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up';
+import { doc, onSnapshot } from "firebase/firestore";
 
 
 class App extends React.Component {
@@ -26,14 +28,28 @@ class App extends React.Component {
 	componentDidMount() {
 		// createUserProfile()
 		this.unsubscribeFromAuth = auth.onAuthStateChanged(async user => {
-			!user ? this.setState({currentUser: user}) : this.setState({currentUser: {
-				displayName: user.displayName,
-				email: user.email,
-				id: user.uid
-			}})
+
+			if (user) {
+				onSnapshot(doc(db, "users", user.uid), async (doc) => {
+					
+					// console.log(doc.data())
+					this.setState({currentUser: {
+						...doc.data(),
+						id: user.uid
+					}})
+				});
+			} else {
+				this.setState({currentUser: null}) 
+			}
+			// !user ? this.setState({currentUser: user}) : this.setState({currentUser: {
+			// 	displayName: user.displayName,
+			// 	email: user.email,
+			// 	id: user.uid
+			// }})
+			// // console.log(user)
+			// createUserProfile(user)
 			// console.log(user)
-			createUserProfile(user)
-			// console.log(user)
+			// console.log(unsub)
 		})
 		// getData()
 	}
@@ -44,7 +60,7 @@ class App extends React.Component {
 
 	render() {
 
-		// console.log(this.state.currentUser)
+		console.log(this.state.currentUser)
 
 	return (
 		<>
