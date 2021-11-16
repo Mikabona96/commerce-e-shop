@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Route, Routes } from 'react-router';
 import './App.css';
 import Header from './components/header/header';
@@ -7,13 +7,14 @@ import HomePage from './pages/homepage/hompage';
 import ShopPage from './pages/shoppage/shoppage';
 import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up';
 import { doc, onSnapshot } from "firebase/firestore";
+import userActionCreator from './actions/userActionCreator';
+import { useDispatch } from 'react-redux';
 
 
 
 const App = () => {
 
-	const [currentUser, setCurrentUser] = useState(null)
-
+	const dispatch = useDispatch()
 
 	useEffect(() => {
 		const unsubscribeFromAuth = auth.onAuthStateChanged(async user => {
@@ -21,26 +22,25 @@ const App = () => {
 			if (user) {
 				onSnapshot(doc(db, "users", user.uid), async (doc) => {
 					
-					setCurrentUser({
+					dispatch(userActionCreator({
 						...doc.data(),
 						id: user.uid
-					})
+					}))
 				});
 				createUserProfile(user)
 			} else {
-				setCurrentUser(null)
+				dispatch(userActionCreator(null))
 			}
 		})
 
 		return () => unsubscribeFromAuth()
 
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
-
-		console.log(currentUser)
 
 	return (
 		<>
-		<Header currentUser={currentUser}/>
+		<Header/>
 		<Routes>
 			<Route path="/" element={<HomePage />} />
 			<Route path="/shop" element={<ShopPage />} />
