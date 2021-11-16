@@ -1,14 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import MenuItem from '../menu-item/menu-item'
 import './directory.scss'
 
 
-class Directory extends React.Component {
-	constructor() {
-		super()
+const Directory = () => {
 
 
-		this.state = {
+	// eslint-disable-next-line no-unused-vars
+	const [state, setState] = useState(
+		{
 			section: [
 				{
 					title: 'hats',
@@ -44,17 +44,16 @@ class Directory extends React.Component {
 				}
 			]
 		}
-	}
+	)
 
-	render() {
-		return (
-			<div className="directory-menu">
-				{this.state.section.map(({ id, ...props }) => (
-					<MenuItem key={id} {...props} />
-				))}
-			</div>
-		)
-	}
+
+	return (
+		<div className="directory-menu">
+			{state.section.map(({ id, ...props }) => (
+				<MenuItem key={id} {...props} />
+			))}
+		</div>
+	)
 }
 
 export default Directory
