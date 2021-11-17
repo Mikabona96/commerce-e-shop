@@ -9,6 +9,9 @@ import { createLogger } from 'redux-logger'
 import { applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import rootReducer from './reducers';
+import {persistStore} from 'redux-persist'
+import { PersistGate } from 'redux-persist/lib/integration/react';
+
 
 const composeEnhancers = composeWithDevTools({
   // Specify name here, actionsBlacklist, actionsCreators and other options if needed
@@ -23,11 +26,15 @@ const store = createStore(
   composeEnhancers(applyMiddleware(logger))
 )
 
+export const persistor = persistStore(store)
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
-        <App />
+        <PersistGate persistor={persistor}>
+          <App />
+        </PersistGate>
       </BrowserRouter>
     </Provider>
   </React.StrictMode>,
