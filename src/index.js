@@ -21,9 +21,16 @@ const logger = createLogger({
   // ...options
 });
 
+const middlewares = []
+
+if (process.env.NODE_ENV === 'development') {
+  middlewares.push(logger)
+}
+
+
 const store = createStore(
   rootReducer,
-  composeEnhancers(applyMiddleware(logger))
+  composeEnhancers(applyMiddleware(...middlewares))
 )
 
 export const persistor = persistStore(store)
