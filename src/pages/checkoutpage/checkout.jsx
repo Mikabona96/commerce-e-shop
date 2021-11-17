@@ -29,6 +29,7 @@ const CheckOutPage = () => {
 					<CheckoutItem key={cartItem.id} cartItem={cartItem} />
 				)
 			}
+			{!cartItems.length ? <div style={{ marginTop: '4rem', fontSize: '1.5rem', fontWeight: '500' }}>Cart is empty...</div> : null}
 			<div className="total">
 				<span>TOTAL: ${total}</span>
 			</div>

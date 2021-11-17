@@ -14,8 +14,8 @@ const CollectionPreview = ({ title, items, routeName }) => {
 		}
 	}
 	return (
-		<div>
-			<h1 onClick={onClickHandler} className="title">{title.toUpperCase()}</h1>
+		<div className="collection-preview">
+			<span onClick={onClickHandler} className="title-collection">{title.toUpperCase()}</span>
 			<div className="preview">
 				{
 					location.pathname === '/shop'
