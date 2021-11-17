@@ -1,21 +1,33 @@
-import { Link } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router'
 import CollectionItem from './collection-item/collection-item'
 import './collection-preview.scss'
 
 
+
 const CollectionPreview = ({ title, items, routeName }) => {
+	const location = useLocation()
+	const navigate = useNavigate()
+
+	const onClickHandler = () => {
+		if (location.pathname === '/shop') {
+			navigate(`/shop/${routeName}`)
+		}
+	}
 	return (
 		<div>
-			<Link to={`/shop/${routeName}`}>
-				<h1 className="title">{title.toUpperCase()}</h1>
-			</Link>
+			<h1 onClick={onClickHandler} className="title">{title.toUpperCase()}</h1>
 			<div className="preview">
 				{
-					items
-						.filter((item, idx) => idx < 4)
-						.map(item => (
-							<CollectionItem key={item.id} item={item} />
-						))
+					location.pathname === '/shop'
+						? items
+							.filter((item, idx) => idx < 4)
+							.map(item => (
+								<CollectionItem key={item.id} item={item} />
+							))
+						: items
+							.map(item => (
+								<CollectionItem key={item.id} item={item} />
+							))
 				}
 			</div>
 		</div>
