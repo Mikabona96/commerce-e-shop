@@ -10,6 +10,8 @@ import { doc, onSnapshot } from "firebase/firestore";
 import userActionCreator from './actions/userActionCreator';
 import { useDispatch } from 'react-redux';
 import CheckOutPage from './pages/checkoutpage/checkout';
+import ShopCategoryRouting from './pages/shoppage/shop-category-routing/shop-category-routing';
+
 
 
 const App = () => {
@@ -44,6 +46,7 @@ const App = () => {
 		<Routes>
 			<Route path="/" element={<HomePage />} />
 			<Route path="/shop" element={<ShopPage />} />
+			<Route path="/shop/:category" element={<ShopCategoryRouting />} />
 			<Route path="/signin" element={<SignInAndSignUpPage />} />
 			<Route path="/checkout" element={<CheckOutPage />} />
 		</Routes>

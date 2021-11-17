@@ -1,9 +1,5 @@
-a {
-	text-decoration: none;
-	color: black;
-}
-
 .preview {
 	display: flex;
+	flex-wrap: wrap;
     justify-content: space-between;
 }

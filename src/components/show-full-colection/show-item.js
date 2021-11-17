@@ -1,9 +1,9 @@
-import './collection-item.scss'
-import CustomButton from '../../custom-button/custom-button'
-import { addItem } from '../../../actions/cartActionCreator'
+import './show-item.scss'
+import CustomButton from '../custom-button/custom-button'
+import { addItem } from '../../actions/cartActionCreator'
 import { useDispatch } from 'react-redux'
 
-const CollectionItem = ({ item }) => {
+const ShowItem = ({ item }) => {
 	const { name, price, imageUrl } = item
 	const dispatch = useDispatch()
 
@@ -20,4 +20,4 @@ const CollectionItem = ({ item }) => {
 }
 
 
-export default CollectionItem
+export default ShowItem
