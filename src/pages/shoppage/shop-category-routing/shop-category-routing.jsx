@@ -7,6 +7,7 @@ import MensPage from '../mens-page/mens-page';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { getCollectionsData } from '../../../firebase/firebase';
+import CollectionOverview from '../../../components/collection-overview/collection-overview';
 
 
 const ShopCategoryRouting = () => {
@@ -35,6 +36,8 @@ const ShopCategoryRouting = () => {
 			return <WomensPage />
 		case '/shop/mens':
 			return <MensPage />
+		case '/shop':
+			return <CollectionOverview />
 		default:
 			return
 	}

@@ -1,26 +1,11 @@
 import styled from 'styled-components';
 
-
-const Spinner = (WrappedComp) => ({ isLoading, ...otherProps }) => {
-	return isLoading ? (
-		<SpinnerOverlay>
-			<SpinnerContainer />
-		</SpinnerOverlay>
-	) : (
-		<WrappedComp isLoading={isLoading} {...otherProps} />
-	)
-}
-
-
-export default Spinner
-
-
 export const Spin = () => {
-	return (
-		<SpinnerOverlay>
-			<SpinnerContainer />
-		</SpinnerOverlay>
-	)
+  return (
+    <SpinnerOverlay>
+      <SpinnerContainer />
+    </SpinnerOverlay>
+  )
 }
 
 
