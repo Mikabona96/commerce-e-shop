@@ -9,13 +9,13 @@ const CollectionItem = ({ item }) => {
 	const dispatch = useDispatch()
 
 	return (
-		<CollItem className="collection-item">
-			<Img className="collection-img" src={imageUrl} alt="" />
-			<Footer className="collection-footer">
+		<CollItem>
+			<Img src={imageUrl} alt="" />
+			<Footer>
 				<span className="name">{name}</span>
 				<span className="price">{price}$</span>
 			</Footer>
-			<CustomBtn className="custom-button" inverted onClick={() => dispatch(addItem(item))}>Add to cart</CustomBtn>
+			<CustomBtn inverted onClick={() => dispatch(addItem(item))}>Add to cart</CustomBtn>
 		</CollItem>
 	)
 }

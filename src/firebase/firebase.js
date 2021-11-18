@@ -97,6 +97,18 @@ export const getCollectionsData = () => {
 			})
 			return arr
 		})
+	.then(collections => {
+			const sortedCollections = collections.sort((a, b) => {
+				if (a.id > b.id) {
+					return 1;
+				}
+				if (a.id < b.id) {
+					return -1;
+				}
+				return 0;
+			})
+			return sortedCollections
+		})
 	// .then(data=> console.log(data))
 }
 
