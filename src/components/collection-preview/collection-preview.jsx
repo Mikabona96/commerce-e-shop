@@ -3,8 +3,6 @@ import { useSelector } from 'react-redux'
 import { useLocation, useNavigate } from 'react-router'
 import CollectionItem from './collection-item/collection-item'
 import './collection-preview.scss'
-import { getCollectionsData } from '../../firebase/firebase';
-import { useDispatch } from 'react-redux'
 import { useState } from 'react'
 import { Spin } from '../spinner/spinner'
 
@@ -18,7 +16,6 @@ const CollectionPreview = ({ title, items, routeName }) => {
 	const location = useLocation()
 	const navigate = useNavigate()
 
-	const dispatch = useDispatch()
 
 	const onClickHandler = () => {
 		if (location.pathname === '/shop') {
@@ -26,13 +23,10 @@ const CollectionPreview = ({ title, items, routeName }) => {
 		}
 	}
 	useEffect(() => {
-		getCollectionsData().then(data => {
-			dispatch({ type: 'UPDATE_COLLECTIONS', payload: data })
-		})
 		setTimeout(() => {
 			setIsLoading(false)
 		}, 1000)
-	}, [dispatch, isLoading])
+	}, [isLoading])
 
 	return (<>{
 		!isLoading && collections.length > 0
