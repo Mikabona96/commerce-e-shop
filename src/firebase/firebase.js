@@ -87,6 +87,20 @@ export const getData = () => {
 	}))
 }
 
+export const getCollectionsData = () => {
+	const colRef = collection(db, 'collections')
+	return getDocs(colRef)
+	.then(collection => {
+			let arr = []
+			collection.docs.forEach(col => {
+				arr.push({ ...col.data(), routeName: col.data().title.toLowerCase() })
+			})
+			return arr
+		})
+	// .then(data=> console.log(data))
+}
+
+
 // Add to Database
 
 export const AddDataToDatabase = () => {
@@ -94,6 +108,15 @@ export const AddDataToDatabase = () => {
 		name: 'Peter',
 		lastName: 'Parker'
 	})
+	//.then(() => ...do smth)
+}
+
+export const addCollectionAndItems = (collectionKey, objectsToAdd) => {
+		const colKey = collection(db, `${collectionKey}`)
+
+		objectsToAdd.forEach(obj => {
+			addDoc(colKey, obj)
+		})
 	//.then(() => ...do smth)
 }
 

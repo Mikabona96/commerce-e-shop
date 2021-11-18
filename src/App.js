@@ -12,11 +12,10 @@ import { useDispatch } from 'react-redux';
 import CheckOutPage from './pages/checkoutpage/checkout';
 import ShopCategoryRouting from './pages/shoppage/shop-category-routing/shop-category-routing';
 
-
-
 const App = () => {
 
 	const dispatch = useDispatch()
+
 
 	useEffect(() => {
 		const unsubscribeFromAuth = auth.onAuthStateChanged(async user => {
